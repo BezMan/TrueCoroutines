@@ -20,29 +20,18 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             htmlResponse = NetworkUtils.fetchHtml(Constants.endpointUrl)
-            displayViews()
+            displayViews(htmlResponse)
         }
 
     }
 
-    private fun showCountPerWord(): CharSequence {
-        return htmlResponse.subSequence(0, 20)
-    }
-
-    private fun show15thCharsArray(): CharSequence {
-        return htmlResponse.subSequence(0, 20)
-    }
-
-    private fun show15thChar(): CharSequence {
-        return htmlResponse.subSequence(0, 20)
-    }
 
 
-    private fun displayViews() {
+    private fun displayViews(htmlStr: String) {
         val displayObjects = listOf(
-            DisplayObj(binding.textView1, show15thChar()),
-            DisplayObj(binding.textView2, show15thCharsArray()),
-            DisplayObj(binding.textView3, showCountPerWord()),
+            DisplayObj(binding.textView1, StringFormatter.show15thChar(htmlStr)),
+            DisplayObj(binding.textView2, StringFormatter.show15thCharsArray(htmlStr)),
+            DisplayObj(binding.textView3, StringFormatter.showCountPerWord(htmlStr)),
         )
 
 
