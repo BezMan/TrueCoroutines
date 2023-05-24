@@ -26,11 +26,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun displayViews(htmlStr: String) {
         val displayObjects = listOf(
-            DisplayObj(binding.textView1, StringFormatter.show15thChar(htmlStr)),
-            DisplayObj(binding.textView2, StringFormatter.show15thCharsArray(htmlStr)),
+            DisplayObj(binding.textView1, StringFormatter.showNthChar(htmlStr, Constants.jumpSize)),
+            DisplayObj(binding.textView2, StringFormatter.showNthCharsArray(htmlStr, Constants.jumpSize)),
             DisplayObj(binding.textView3, StringFormatter.showCountPerWord(htmlStr)),
         )
 

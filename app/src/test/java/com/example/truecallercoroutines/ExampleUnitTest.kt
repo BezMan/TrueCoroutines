@@ -2,6 +2,7 @@ package com.example.truecallercoroutines
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -18,12 +19,30 @@ class ExampleUnitTest {
         runTest {
             // Arrange
             val url = Constants.endpointUrl
-
             // Act
             val response = NetworkUtils.fetchHtml(url)
-
             // Assert
             assertTrue(response.isNotBlank())
         }
     }
+
+
+    @Test
+    fun testGet15thLetter() {
+        assertEquals(
+            "o",
+            StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", Constants.jumpSize)
+        )
+    }
+
+    @Test
+    fun testGet15thLetterFromEmptyString() {
+        assertEquals("", StringFormatter.showNthChar("", Constants.jumpSize))
+    }
+
+    @Test
+    fun testGet15thLetterFromStringWithLessThan15Characters() {
+        assertEquals("", StringFormatter.showNthChar("abcde", Constants.jumpSize))
+    }
+
 }
