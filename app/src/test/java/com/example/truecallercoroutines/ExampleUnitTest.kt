@@ -28,21 +28,74 @@ class ExampleUnitTest {
 
 
     @Test
-    fun testGet15thLetter() {
+    fun testGetNthLetter() {
+        assertEquals(
+            "c",
+            StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", 3)
+        )
         assertEquals(
             "o",
-            StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", Constants.jumpSize)
+            StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", 15)
         )
     }
 
     @Test
-    fun testGet15thLetterFromEmptyString() {
-        assertEquals("", StringFormatter.showNthChar("", Constants.jumpSize))
+    fun testGetNthLetterJumpSizeSmallerThanOne() {
+        assertEquals("", StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", 0))
+        assertEquals("", StringFormatter.showNthChar("abcdefghijklmnopqrstuvwxyz", -1))
+    }
+
+
+    @Test
+    fun testGetNthLetterFromEmptyString() {
+        assertEquals("", StringFormatter.showNthChar("", 15))
     }
 
     @Test
-    fun testGet15thLetterFromStringWithLessThan15Characters() {
-        assertEquals("", StringFormatter.showNthChar("abcde", Constants.jumpSize))
+    fun testGetNthLetterFromStringWithLessThan15Characters() {
+        assertEquals("", StringFormatter.showNthChar("abcde", 15))
+    }
+
+
+    @Test
+    fun testGetNthLettersArray() {
+        assertEquals(
+            "[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]",
+            StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", -1)
+        )
+        assertEquals(
+            "[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]",
+            StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", 1)
+        )
+        assertEquals(
+            "[b, d, f, h, j, l, n, p, r, t, v, x, z]",
+            StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", 2)
+        )
+        assertEquals("[o]", StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", 15))
+    }
+
+    @Test
+    fun testGetNthLettersArrayJumpSizeSmallerThanOne() {
+        assertEquals(
+            "[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]",
+            StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", 0)
+        )
+        assertEquals(
+            "[a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]",
+            StringFormatter.showNthCharsArray("abcdefghijklmnopqrstuvwxyz", -1)
+        )
+    }
+
+    @Test
+    fun testGetNthLettersArrayFromEmptyString() {
+        assertEquals("[]", StringFormatter.showNthCharsArray("", -1))
+        assertEquals("[]", StringFormatter.showNthCharsArray("", 1))
+        assertEquals("[]", StringFormatter.showNthCharsArray("", 15))
+    }
+
+    @Test
+    fun testGetNthLettersArrayFromStringWithLessThanNCharacters() {
+        assertEquals("[]", StringFormatter.showNthCharsArray("abcde", 15))
     }
 
 }
