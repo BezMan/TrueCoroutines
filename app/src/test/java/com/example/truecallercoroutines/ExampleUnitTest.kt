@@ -98,4 +98,19 @@ class ExampleUnitTest {
         assertEquals("[]", StringFormatter.showNthCharsArray("abcde", 15))
     }
 
+    @Test
+    fun testGetWordCountPerWord() {
+        assertEquals("{Hello=1, world=1}", StringFormatter.showCountPerWord("Hello world"))
+        assertEquals(
+            "{Hello=3, world=2}",
+            StringFormatter.showCountPerWord(" Hello  world  Hello world Hello ")
+        )
+    }
+
+    @Test
+    fun testGetWordCountPerWordFromBlankString() {
+        assertEquals("", StringFormatter.showCountPerWord(""))
+        assertEquals("", StringFormatter.showCountPerWord("   "))
+    }
+
 }

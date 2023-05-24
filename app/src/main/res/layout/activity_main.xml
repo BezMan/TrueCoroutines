@@ -9,6 +9,7 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="242dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
@@ -18,6 +19,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="242dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:text="TextView 2" />
@@ -26,6 +28,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="243dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:text="TextView 3" />

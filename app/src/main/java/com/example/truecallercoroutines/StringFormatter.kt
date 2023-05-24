@@ -23,7 +23,15 @@ object StringFormatter {
     }
 
     internal fun showCountPerWord(htmlStr: String): CharSequence {
-        return htmlStr.subSequence(0, 20)
+        if (htmlStr.isBlank()) return ""
+
+        val result = mutableMapOf<String, Int>()
+        val words = htmlStr.trim().split("\\s+".toRegex())
+
+        for (word in words) {
+            result[word] = result.getOrDefault(word, 0) + 1
+        }
+        return result.toString()
     }
 
 
