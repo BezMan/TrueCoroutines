@@ -103,7 +103,7 @@ class ExampleUnitTest {
         assertEquals("{Hello=1, world=1}", StringFormatter.showCountPerWord("Hello world"))
         assertEquals(
             "{Hello=3, world=2}",
-            StringFormatter.showCountPerWord(" Hello  world  Hello world Hello ")
+            StringFormatter.showCountPerWord("   \t    Hello   \n    world  Hello world Hello \n\t ")
         )
     }
 

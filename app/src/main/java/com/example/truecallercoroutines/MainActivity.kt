@@ -6,41 +6,38 @@ import com.example.truecallercoroutines.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var htmlResponse: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         CoroutineScope(Dispatchers.IO).launch {
-            htmlResponse = NetworkUtils.fetchHtml(Constants.endpointUrl)
-            displayViews(htmlResponse)
+            val htmlResponse: String = NetworkUtils.fetchHtml(Constants.endpointUrl)
+            val displays = createDisplays(htmlResponse)
+            withContext(Dispatchers.Main) {
+                displayViews(displays)
+            }
         }
-
     }
 
-
-    private fun displayViews(htmlStr: String) {
-        val displayObjects = listOf(
+    private fun createDisplays(htmlStr: String): List<DisplayObj> {
+        return listOf(
             DisplayObj(binding.textView1, StringFormatter.showNthChar(htmlStr, Constants.jumpSize)),
             DisplayObj(binding.textView2, StringFormatter.showNthCharsArray(htmlStr, Constants.jumpSize)),
             DisplayObj(binding.textView3, StringFormatter.showCountPerWord(htmlStr)),
         )
+    }
 
-
-
-        displayObjects.forEach { obj ->
-            CoroutineScope(Dispatchers.Main).launch {
-                obj.viewHolder.text = obj.function
-            }
+    private fun displayViews(displays: List<DisplayObj>) {
+        displays.forEach { obj ->
+            obj.viewHolder.text = obj.function
         }
-
     }
 
 }
