@@ -15,15 +15,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.fetchHtml(Constants.endpointUrl)
+        observeHtml()
+    }
 
+    override fun onResume() { // or on btn click / swipe to refresh
+        super.onResume()
+        viewModel.fetchHtml(Constants.endpointUrl)
+    }
+
+    private fun observeHtml() {
         viewModel.viewState.observe(this) { htmlResponse ->
             val displays = createDisplays(htmlResponse)
             displayViews(displays)
         }
     }
 
-        private fun createDisplays(htmlStr: String): List<DisplayObj> {
+    private fun createDisplays(htmlStr: String): List<DisplayObj> {
         return listOf(
             DisplayObj(binding.textView1, StringFormatter.showNthChar(htmlStr, Constants.jumpSize)),
             DisplayObj(binding.textView2, StringFormatter.showNthCharsArray(htmlStr, Constants.jumpSize)),
