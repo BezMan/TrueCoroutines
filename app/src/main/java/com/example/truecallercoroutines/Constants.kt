@@ -1,9 +1,13 @@
 package com.example.truecallercoroutines
 
-object Constants {
+class Constants {
 
-    internal const val jumpSize: Int = 15
-    internal const val endpointUrl =
-        "https://www.truecaller.com/blog/life-at-truecaller/life-as-an-android-engineer"
+    companion object {
+
+        internal const val jumpSize: Int = 15
+        internal const val endpointUrl =
+            "https://www.truecaller.com/blog/life-at-truecaller/life-as-an-android-engineer"
+
+    }
 
 }
