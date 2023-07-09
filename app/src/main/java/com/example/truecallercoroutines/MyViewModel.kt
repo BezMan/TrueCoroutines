@@ -19,7 +19,8 @@ class MyViewModel : ViewModel() {
 
     fun fetchHtml(endPointUrl: String) {
         viewModelScope.launch(dispatcher) {
-            _viewState.postValue(NetworkUtils.fetchHtml(endPointUrl))
+            val html = NetworkUtils.fetchHtml(endPointUrl)
+            _viewState.postValue(html)
         }
 
     }
