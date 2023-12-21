@@ -20,7 +20,7 @@ class ExampleUnitTest {
             // Arrange
             val url = Constants.endpointUrl
             // Act
-            val response = NetworkUtils.fetchHtml(url)
+            val response = NetworkUtils().fetchHtml(url)
             // Assert
             assertTrue(response.isNotBlank())
         }
